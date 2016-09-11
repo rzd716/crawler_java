@@ -6,5 +6,6 @@ public class Main {
         System.out.print("this is another test");
         System.out.print("this is 4st test.");
         System.out.print("AAAAAAAAAA");
+        System.out.print("BBBBBBBBBBB");
     }
 }
