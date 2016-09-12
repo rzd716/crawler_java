@@ -12,7 +12,7 @@ public class Main {
         String url = "http://www.baidu.com";
         // 访问链接并获取页面内容
         String result = sendGet(url);
-        String imgSrc=RegexString(result, "\"true\"\\s{1}src=\"//(.+?)\"");
+        String imgSrc=RegexString(result, "true\\ssrc=/{2}(.+?\\.png)");
         System.out.println(imgSrc);
     }
     static String sendGet(String url) {
