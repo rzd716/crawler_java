@@ -16,7 +16,6 @@ public class Spider {
         String result = "";
         // 定义一个缓冲字符输入流
         BufferedReader in = null;
-
         try {
             // 将string转成url对象
             URL realUrl = new URL(url);
@@ -48,32 +47,25 @@ public class Spider {
             }
         }
         return result;
-
     }
 
-    static ArrayList<Zhihu> GetZhihu(String content) {
+    // 获取所有的编辑推荐的知乎内容
+    static ArrayList<Zhihu> GetRecommendations(String content) {
         // 预定义一个ArrayList来存储结果
         ArrayList<Zhihu> results = new ArrayList<Zhihu>();
-        // 用来匹配标题
-        Pattern questionPattern = Pattern.compile("question_link.+?>(.+?)<");
-        Matcher questionMatcher = questionPattern.matcher(content);
         // 用来匹配url，也就是问题的链接
-        Pattern urlPattern = Pattern.compile("question_link.+?href=\"(.+?)\"");
-        Matcher urlMatcher = urlPattern.matcher(content);
-
-        // 问题和链接要均能匹配到
-        boolean isFind = questionMatcher.find() && urlMatcher.find();
-
+        Pattern pattern = Pattern
+                .compile("<h2>.+?question_link.+?href=\"(.+?)\".+?</h2>");
+        Matcher matcher = pattern.matcher(content);
+        // 是否存在匹配成功的对象
+        Boolean isFind = matcher.find();
         while (isFind) {
             // 定义一个知乎对象来存储抓取到的信息
-            Zhihu zhuhuTemp = new Zhihu();
-            zhuhuTemp.question = questionMatcher.group(1);
-            zhuhuTemp.zhihuUrl = "http://www.zhihu.com" + urlMatcher.group(1);
-
+            Zhihu zhihuTemp = new Zhihu(matcher.group(1));
             // 添加成功匹配的结果
-            results.add(zhuhuTemp);
+            results.add(zhihuTemp);
             // 继续查找下一个匹配对象
-            isFind = questionMatcher.find() && urlMatcher.find();
+            isFind = matcher.find();
         }
         return results;
     }

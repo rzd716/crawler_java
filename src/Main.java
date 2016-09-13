@@ -11,7 +11,7 @@ public class Main {
         // 访问链接并获取页面内容
         String content = Spider.SendGet(url);
         // 获取该页面的所有的知乎对象
-        ArrayList<Zhihu> myZhihu = Spider.GetZhihu(content);
+        ArrayList<Zhihu> myZhihu = Spider.GetRecommendations(content);
         // 打印结果
         System.out.println(myZhihu);
     }
