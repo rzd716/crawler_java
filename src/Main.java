@@ -15,7 +15,7 @@ public class Main {
 
         for (Zhihu zhihu : myZhihu) {
             FileReaderWriter.writeIntoFile(zhihu.writeString(),
-                    "D:/知乎_编辑推荐.txt", true);
+                    "/home/rzd/test/zhihu/知乎_编辑推荐.txt", true);
         }
 //        // 打印结果
 //        System.out.println(myZhihu);
