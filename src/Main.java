@@ -12,7 +12,12 @@ public class Main {
         String content = Spider.SendGet(url);
         // 获取该页面的所有的知乎对象
         ArrayList<Zhihu> myZhihu = Spider.GetRecommendations(content);
-        // 打印结果
-        System.out.println(myZhihu);
+
+        for (Zhihu zhihu : myZhihu) {
+            FileReaderWriter.writeIntoFile(zhihu.writeString(),
+                    "D:/知乎_编辑推荐.txt", true);
+        }
+//        // 打印结果
+//        System.out.println(myZhihu);
     }
 }

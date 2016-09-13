@@ -68,6 +68,22 @@ public class Zhihu {
         }
         return true;
     }
+
+    public String writeString() {
+        // 拼接写入本地的字符串
+        String result = "";
+        result += "问题：" + question + "\r\n";
+        result += "描述：" + questionDescription + "\r\n";
+        result += "链接：" + zhihuUrl + "\r\n";
+        for (int i = 0; i < answers.size(); i++) {
+            result += "回答" + i + "：" + answers.get(i) + "\r\n\r\n";
+        }
+        result += "\r\n\r\n\r\n\r\n";
+        // 将其中的html标签进行筛选
+        result = result.replaceAll("<br>", "\r\n");
+        result = result.replaceAll("<.*?>", "");
+        return result;
+    }
     @Override
     public String toString() {
         return "问题：" + question + "\n" + "描述：" + questionDescription + "\n"
